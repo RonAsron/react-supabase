@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 # React Supabase
 
 โปรเจกต์นี้เป็นแอปที่ใช้ React และ Supabase สำหรับการจัดการฐานข้อมูลและการใช้งานฟีเจอร์ต่าง ๆ เช่น การเข้าสู่ระบบ, การลงทะเบียน, และการจัดการข้อมูลในแอป
+=======
+# react-supabase
+
+โปรเจกต์นี้เป็นแอป React ที่เชื่อมต่อกับ Supabase
+
+## ฟีเจอร์
+
+- มีระบบ แก้ไข ลบ เพิ่ม ค้าหา ข้อมูล ด้วย 
+- การจัดการฐานข้อมูลด้วย Supabase
+- React vite 
+>>>>>>> 75fbfae4bc9083e46d0706062e80ea592a1c4293
 
 ## วิธีการติดตั้ง
 
@@ -10,6 +22,7 @@
 
 ```bash
 git clone https://github.com/RonAsron/react-supabase.git
+<<<<<<< HEAD
 ขั้นตอนที่ 2: ติดตั้ง Dependencies
 หลังจากที่คุณคลอนโปรเจกต์แล้ว ให้ไปที่โฟลเดอร์โปรเจกต์:
 
@@ -37,11 +50,32 @@ yarn install
 javascript
 คัดลอก
 แก้ไข
+=======
+```
+### ขั้นตอนที่ 2: ติดตั้ง Dependencies
+หลังจากคลอนโปรเจกต์แล้ว ให้ไปที่โฟลเดอร์โปรเจกต์:
+
+```bash
+cd react-supabase
+```
+
+ติดตั้ง dependencies ที่จำเป็นสำหรับโปรเจกต์:
+```bash
+npm install
+```
+
+### ขั้นตอนที่ 3: ตั้งค่า Supabase
+คุณต้องตั้งค่า Supabase client โดยการใช้ไฟล์ supabaseClient.js ที่อยู่ในโฟลเดอร์ src/api โดยสามารถสร้างบัญชีที่ supabase.io และสร้างโปรเจกต์ใหม่ จากนั้นคัดลอก URL และ API key มาใส่ในไฟล์ supabaseClient.js.
+
+ตัวอย่างการตั้งค่าในไฟล์ supabaseClient.js:
+```bash
+>>>>>>> 75fbfae4bc9083e46d0706062e80ea592a1c4293
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = 'YOUR_SUPABASE_URL'
 const supabaseKey = 'YOUR_SUPABASE_API_KEY'
 export const supabase = createClient(supabaseUrl, supabaseKey)
+<<<<<<< HEAD
 ขั้นตอนที่ 4: รันแอป
 ตอนนี้คุณสามารถเริ่มต้นแอปได้โดยใช้คำสั่ง:
 
@@ -82,3 +116,19 @@ go
 แก้ไข
 
 คุณสามารถคัดลอกและวางไฟล์นี้ลงในไฟล์ `README.md` ของโปรเจกต์คุณได้เลยครับ!
+=======
+```
+
+### ขั้นตอนที่ 4: รันแอป
+
+```bash
+npm start
+```
+ปกติ จะใช้ อันนี้ 
+```bash
+npm run dev
+```
+
+
+
+>>>>>>> 75fbfae4bc9083e46d0706062e80ea592a1c4293
