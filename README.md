@@ -4,10 +4,9 @@
 
 ## ฟีเจอร์
 
-- การยืนยันตัวตนของผู้ใช้ด้วย Supabase Auth
+- มีระบบ แก้ไข ลบ เพิ่ม ค้าหา ข้อมูล ด้วย 
 - การจัดการฐานข้อมูลด้วย Supabase
-- การอัปเดตแบบเรียลไทม์ผ่าน Supabase
-- อินเทอร์เฟซที่ใช้งานง่ายสร้างด้วย React
+- React vite 
 
 ## วิธีการติดตั้ง
 
@@ -47,7 +46,10 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 ```bash
 npm start
 ```
-
+ปกติ จะใช้ อันนี้ 
+```bash
+npm run dev
+```
 
 
 
