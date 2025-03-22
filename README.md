@@ -1,14 +1,84 @@
-# React + Vite
+# React Supabase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+โปรเจกต์นี้เป็นแอปที่ใช้ React และ Supabase สำหรับการจัดการฐานข้อมูลและการใช้งานฟีเจอร์ต่าง ๆ เช่น การเข้าสู่ระบบ, การลงทะเบียน, และการจัดการข้อมูลในแอป
 
-Currently, two official plugins are available:
+## วิธีการติดตั้ง
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ขั้นตอนที่ 1: คลอนโปรเจกต์
 
-## Expanding the ESLint configuration
+เริ่มต้นด้วยการคลอนโปรเจกต์จาก GitHub:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# react-supabase
-# react-supabase
+```bash
+git clone https://github.com/RonAsron/react-supabase.git
+ขั้นตอนที่ 2: ติดตั้ง Dependencies
+หลังจากที่คุณคลอนโปรเจกต์แล้ว ให้ไปที่โฟลเดอร์โปรเจกต์:
+
+bash
+คัดลอก
+แก้ไข
+cd react-supabase
+ติดตั้ง dependencies ที่จำเป็นสำหรับโปรเจกต์:
+
+bash
+คัดลอก
+แก้ไข
+npm install
+หรือหากคุณใช้ Yarn:
+
+bash
+คัดลอก
+แก้ไข
+yarn install
+ขั้นตอนที่ 3: ตั้งค่า Supabase
+คุณต้องตั้งค่า Supabase client ด้วยการใช้ supabaseClient.js ในโฟลเดอร์ src/api. คุณสามารถสร้างบัญชีที่ Supabase และสร้างโปรเจกต์ใหม่ได้ จากนั้นคัดลอก URL และ API key และใส่ในไฟล์ supabaseClient.js.
+
+ตัวอย่างการตั้งค่าใน supabaseClient.js:
+
+javascript
+คัดลอก
+แก้ไข
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'YOUR_SUPABASE_URL'
+const supabaseKey = 'YOUR_SUPABASE_API_KEY'
+export const supabase = createClient(supabaseUrl, supabaseKey)
+ขั้นตอนที่ 4: รันแอป
+ตอนนี้คุณสามารถเริ่มต้นแอปได้โดยใช้คำสั่ง:
+
+bash
+คัดลอก
+แก้ไข
+npm start
+หรือหากใช้ Yarn:
+
+bash
+คัดลอก
+แก้ไข
+yarn start
+แอปจะเปิดในเบราว์เซอร์ที่ http://localhost:3000
+
+ฟีเจอร์
+การสมัครสมาชิกและเข้าสู่ระบบด้วย Supabase Auth
+
+การแสดงข้อมูลจากฐานข้อมูล Supabase
+
+การเพิ่ม, แก้ไข, และลบข้อมูลในแอป
+
+ข้อกำหนด
+Node.js 14.x ขึ้นไป
+
+npm หรือ Yarn
+
+Supabase account
+
+การตั้งค่าในอนาคต
+หากต้องการเพิ่มฟีเจอร์ใหม่หรือปรับแต่งแอปนี้ สามารถดูรายละเอียดในโค้ดหรือเพิ่มฟังก์ชันใหม่ตามที่ต้องการ
+
+License
+โปรเจกต์นี้ใช้ MIT License.
+
+go
+คัดลอก
+แก้ไข
+
+คุณสามารถคัดลอกและวางไฟล์นี้ลงในไฟล์ `README.md` ของโปรเจกต์คุณได้เลยครับ!

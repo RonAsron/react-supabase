@@ -25,6 +25,11 @@ const AppLayout = ({ children }) => {
       icon: <InfoCircleOutlined />,
       label: <Link to="/books">Books</Link>,
     },
+    {
+      key: '4',
+      icon: <InfoCircleOutlined />,
+      label: <Link to="/dataall">dataall</Link>,
+    },
   ];
 
   return (
