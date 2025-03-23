@@ -1,7 +1,12 @@
-import { Typography } from "antd";
-
+import React from 'react'
 const HomePage = () => {
-  return <Typography.Title>Welcome to Home Page</Typography.Title>;
-};
+  return (
+    <div>
+      <h1>
+      นาย อัสรอน ดอเลาะ
+      </h1>
+    </div>
+  )
+}
 
-export default HomePage;
+export default HomePage

@@ -1,34 +1,23 @@
 import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
-import { HomeOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import { HomeOutlined, InfoCircleOutlined, ShoppingCartOutlined, UserSwitchOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 const { Header, Sider, Content, Footer } = Layout;
 
 const AppLayout = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false); // ใช้เพื่อพับ/ขยาย Sidebar
+  const [collapsed, setCollapsed] = useState(false);
 
-  // Menu items using the 'items' prop
   const menuItems = [
     {
       key: '1',
       icon: <HomeOutlined />,
-      label: <Link to="/">Home</Link>,
+      label: <Link to="/">ชื่อ</Link>,
     },
     {
       key: '2',
-      icon: <InfoCircleOutlined />,
-      label: <Link to="/about">About</Link>,
-    },
-    {
-      key: '3',
-      icon: <InfoCircleOutlined />,
-      label: <Link to="/books">Books</Link>,
-    },
-    {
-      key: '4',
-      icon: <InfoCircleOutlined />,
-      label: <Link to="/dataall">dataall</Link>,
+      icon: <ShoppingCartOutlined/>,
+      label: <Link to="/dataall">รายการสินค้า</Link>,
     },
   ];
 
@@ -54,8 +43,8 @@ const AppLayout = ({ children }) => {
 
       <Layout>
         {/* Header */}
-        <Header style={{ padding: 0, background: "#001529", color: "#fff", textAlign: "center" }}>
-          <h1 style={{ margin: 0, fontSize: "20px" }}>Supabase App</h1>
+        <Header style={{ padding: 0, background: "#efc5de", color: "#fff", textAlign: "center" }}>
+          <h1 style={{ margin: 30, fontSize: "20px" }}>สอบ อิอิ</h1>
         </Header>
 
         {/* Content */}
@@ -64,7 +53,7 @@ const AppLayout = ({ children }) => {
         </Content>
 
         {/* Footer */}
-        <Footer style={{ textAlign: "center" }}>© 2025 Supabase App</Footer>
+        <Footer style={{ textAlign: "center" }}>© Asron Doloh 6649010031 </Footer>
       </Layout>
     </Layout>
   );

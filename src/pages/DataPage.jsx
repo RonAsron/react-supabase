@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Table, Button, Modal, Form, Input, notification } from "antd";
 import { getData, addData, updateData, deleteData } from "../api/auth";
+import { HomeOutlined, InfoCircleOutlined, ShoppingCartOutlined, UserSwitchOutlined, DeleteOutlined ,EditOutlined , PlusCircleOutlined } from "@ant-design/icons";
 
-// 🔄 ตั้งค่าชื่อ collection ที่ใช้ ดึงข้อมูล
-const collectionName = "books"; // เปลี่ยนแค่ตรงนี้ เช่นเป็น "drinks" หรือ "books" ได้เลย
+const collectionName = "shop-it";
 
 const DataPage = () => {
   const [items, setItems] = useState([]);
@@ -29,15 +29,15 @@ const DataPage = () => {
     }
   };
 
-  const filteredItems = items.filter(item =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.author.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
+const filteredItems = items.filter(item =>
+  item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  item.unitsnumber.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
 
   const openModal = (item = null) => {
     setEditingItem(item);
-    form.setFieldsValue(item || { name: "", category: "", price: "", description: "" });
+    form.setFieldsValue(item || { number: "", name: "", barcode: "", detail: "", howtouse: "", unitsnumber: "", units: "", price: "" });
     setIsModalVisible(true);
   };
 
@@ -70,18 +70,21 @@ const DataPage = () => {
   };
 
   const columns = [
-    { title: "ชื่อหนังสือ", dataIndex: "title", key: "title" },
-    { title: "ผู้แต่ง", dataIndex: "author", key: "author" },
-    { title: "สำนักพิมพ์", dataIndex: "publisher", key: "publisher" },
-    { title: "ปีที่พิมพ์", dataIndex: "year", key: "year" },
-    { title: "ISBN", dataIndex: "isbn", key: "isbn" },
+    { title: "รหัสสินค้า", dataIndex: "number", key: "number" },
+    { title: "ชื่อสินค้า", dataIndex: "name", key: "name" },
+    { title: "เลขบาร์โค้ด", dataIndex: "barcode", key: "barcode" },
+    { title: "รายละเอียดสินค้า", dataIndex: "detail", key: "detail" },
+    { title: "วิธีการใช้งาน", dataIndex: "howtouse", key: "howtouse" },
+    { title: "จำนวนหน่วย", dataIndex: "unitsnumber", key: "unitsnumber" },
+    { title: "หน่วยสินค้า", dataIndex: "units", key: "units" },
+    { title: "ราคาต่อหน่วย", dataIndex: "price", key: "price" },
     {
       title: "จัดการ",
       key: "action",
       render: (_, record) => (
         <>
-          <Button onClick={() => openModal(record)} style={{ marginRight: 8 }}>แก้ไข</Button>
-          <Button danger onClick={() => handleDelete(record.id)}>ลบ</Button>
+          <Button onClick={() => openModal(record)}  style={{ marginRight: 8 }}><EditOutlined />แก้ไข</Button>
+          <Button danger onClick={() => handleDelete(record.id)}><DeleteOutlined />ลบ</Button>
         </>
       ),
     },
@@ -89,31 +92,42 @@ const DataPage = () => {
 
   return (
     <div>
-      <h1>📦 รายการ {collectionName}</h1>
+      <h1>🔥{collectionName} รายการสินค้า</h1>
       <Input
         placeholder={`ค้นหา ${collectionName}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{ width: 300, marginBottom: 16 }}
       />
-      <Button type="primary" onClick={() => openModal()} style={{ marginBottom: 16 }}>➕ เพิ่ม {collectionName}</Button>
+      <Button type="primary" onClick={() => openModal()} style={{ marginBottom: 16, }}><PlusCircleOutlined /> เพิ่ม {collectionName}</Button>
       <Table columns={columns} dataSource={filteredItems} rowKey="id" loading={loading} />
-      <Modal title={editingItem ? "แก้ไขหนังสือ" : "เพิ่มหนังสือ"} open={isModalVisible} onOk={handleSave} onCancel={() => setIsModalVisible(false)}>
+      <Modal title={editingItem ? "แก้ไขสินค้า" : "เพิ่มสินค้า"} open={isModalVisible} onOk={handleSave} onCancel={() => setIsModalVisible(false)}>
         <Form form={form} layout="vertical">
-          <Form.Item name="title" label="ชื่อหนังสือ" rules={[{ required: true, message: "กรุณากรอกชื่อหนังสือ" }]}>
+        
+        
+          <Form.Item name="number" label="รหัสสินค้า">
             <Input />
           </Form.Item>
-          <Form.Item name="author" label="ผู้แต่ง" rules={[{ required: true, message: "กรุณากรอกชื่อผู้แต่ง" }]}>
+          <Form.Item name="name" label="ชื่อสินค้า">
             <Input />
           </Form.Item>
-          <Form.Item name="publisher" label="สำนักพิมพ์">
+          <Form.Item name="barcode" label="เลขบาร์โค้ด">
             <Input />
           </Form.Item>
-          <Form.Item name="year" label="ปีที่พิมพ์">
+          <Form.Item name="detail" label="รายละเอียดสินค้า">
+            <Input />
+          </Form.Item>
+          <Form.Item name="howtouse" label="วิธีการใช้งาน">
+            <Input />
+          </Form.Item>
+          <Form.Item name="unitsnumber" label="จำนวนหน่วย">
             <Input type="number" />
           </Form.Item>
-          <Form.Item name="isbn" label="ISBN">
+          <Form.Item name="units" label="หน่วยนับสินค้า ">
             <Input />
+          </Form.Item>
+          <Form.Item name="price" label="ราคาต่อหน่วย">
+            <Input type="number" />
           </Form.Item>
         </Form>
       </Modal>
