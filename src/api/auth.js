@@ -1,9 +1,8 @@
 import { supabase } from "./supabaseClient";
 
-// 📌 ดึงข้อมูลจากตารางที่ระบุ (สามารถใช้กับหลายประเภท)
 export const getData = async (tableName, filters = {}) => {
   try {
-    let query = supabase.from(tableName).select('*'); // Select all columns
+    let query = supabase.from(tableName).select('*');
     for (const [key, value] of Object.entries(filters)) {
       query = query.eq(key, value);
     }
@@ -22,7 +21,6 @@ export const getData = async (tableName, filters = {}) => {
   }
 };
 
-// 📌 เพิ่มข้อมูลใหม่
 export const addData = async (tableName, data) => {
   try {
     const { data: newData, error } = await supabase.from(tableName).insert([data]);
@@ -33,7 +31,6 @@ export const addData = async (tableName, data) => {
   }
 };
 
-// 📌 แก้ไขข้อมูล
 export const updateData = async (tableName, id, updatedData) => {
   try {
     const { data, error } = await supabase.from(tableName).update(updatedData).eq("id", id);
@@ -44,7 +41,6 @@ export const updateData = async (tableName, id, updatedData) => {
   }
 };
 
-// 📌 ลบข้อมูล
 export const deleteData = async (tableName, id) => {
   try {
     const { error } = await supabase.from(tableName).delete().eq("id", id);

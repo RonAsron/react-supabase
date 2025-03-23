@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Form, Input, notification } from "antd";
+import { Table, Button, Modal, Form, Input, notification, Flex } from "antd";
 import { getData, addData, updateData, deleteData } from "../api/auth";
-import { HomeOutlined, InfoCircleOutlined, ShoppingCartOutlined, UserSwitchOutlined, DeleteOutlined ,EditOutlined , PlusCircleOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  InfoCircleOutlined,
+  ShoppingCartOutlined,
+  UserSwitchOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
 
 const collectionName = "shop-it";
 
@@ -23,21 +31,35 @@ const DataPage = () => {
       const data = await getData(collectionName);
       setItems(data);
     } catch (error) {
-      notification.error({ message: `Error fetching ${collectionName}`, description: error.message });
+      notification.error({
+        message: `Error fetching ${collectionName}`,
+        description: error.message,
+      });
     } finally {
       setLoading(false);
     }
   };
 
-const filteredItems = items.filter(item =>
-  item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  item.unitsnumber.toLowerCase().includes(searchTerm.toLowerCase())
-);
-
+  const filteredItems = items.filter(
+    (item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.detail.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const openModal = (item = null) => {
     setEditingItem(item);
-    form.setFieldsValue(item || { number: "", name: "", barcode: "", detail: "", howtouse: "", unitsnumber: "", units: "", price: "" });
+    form.setFieldsValue(
+      item || {
+        number: "",
+        name: "",
+        barcode: "",
+        detail: "",
+        howtouse: "",
+        unitsnumber: "",
+        units: "",
+        price: "",
+      }
+    );
     setIsModalVisible(true);
   };
 
@@ -49,6 +71,7 @@ const filteredItems = items.filter(item =>
         notification.success({ message: `อัปเดต ${collectionName} สำเร็จ` });
       } else {
         await addData(collectionName, values);
+        3;
         notification.success({ message: `เพิ่ม ${collectionName} สำเร็จ` });
       }
       setIsModalVisible(false);
@@ -83,8 +106,14 @@ const filteredItems = items.filter(item =>
       key: "action",
       render: (_, record) => (
         <>
-          <Button onClick={() => openModal(record)}  style={{ marginRight: 8 }}><EditOutlined />แก้ไข</Button>
-          <Button danger onClick={() => handleDelete(record.id)}><DeleteOutlined />ลบ</Button>
+          <Button onClick={() => openModal(record)} style={{ marginRight: 8 }}>
+            <EditOutlined />
+            แก้ไข
+          </Button>
+          <Button danger onClick={() => handleDelete(record.id)}>
+            <DeleteOutlined />
+            ลบ
+          </Button>
         </>
       ),
     },
@@ -92,41 +121,116 @@ const filteredItems = items.filter(item =>
 
   return (
     <div>
-      <h1>🔥{collectionName} รายการสินค้า</h1>
+      <h1
+        style={{
+          justifyContent: "center",
+          alignContent: "center",
+          display: Flex,
+        }}
+      >
+        🛒รายการสินค้า
+      </h1>
       <Input
         placeholder={`ค้นหา ${collectionName}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{ width: 300, marginBottom: 16 }}
       />
-      <Button type="primary" onClick={() => openModal()} style={{ marginBottom: 16, }}><PlusCircleOutlined /> เพิ่ม {collectionName}</Button>
-      <Table columns={columns} dataSource={filteredItems} rowKey="id" loading={loading} />
-      <Modal title={editingItem ? "แก้ไขสินค้า" : "เพิ่มสินค้า"} open={isModalVisible} onOk={handleSave} onCancel={() => setIsModalVisible(false)}>
+      <Button
+        type="primary"
+        onClick={() => openModal()}
+        style={{ marginBottom: 16 }}
+      >
+        <PlusCircleOutlined /> เพิ่ม {collectionName}
+      </Button>
+      <Table
+        columns={columns}
+        dataSource={filteredItems}
+        rowKey="id"
+        loading={loading}
+      />
+      <Modal
+        title={editingItem ? "แก้ไขสินค้า" : "เพิ่มสินค้า"}
+        open={isModalVisible}
+        onOk={handleSave}
+        onCancel={() => setIsModalVisible(false)}
+      >
         <Form form={form} layout="vertical">
-        
-        
-          <Form.Item name="number" label="รหัสสินค้า">
+          <Form.Item
+            name="number"
+            label="รหัสสินค้า"
+            rules={[{ required: true, message: "กรุณากรอกรหัสสินค้า!" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="name" label="ชื่อสินค้า">
+
+          <Form.Item
+            name="name"
+            label="ชื่อสินค้า"
+            rules={[{ required: true, message: "กรุณากรอกชื่อสินค้า!" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="barcode" label="เลขบาร์โค้ด">
+
+          <Form.Item
+            name="barcode"
+            label="เลขบาร์โค้ด"
+            rules={[{ required: true, message: "กรุณากรอกเลขบาร์โค้ด!" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="detail" label="รายละเอียดสินค้า">
+
+          <Form.Item
+            name="detail"
+            label="รายละเอียดสินค้า"
+            rules={[{ required: true, message: "กรุณากรอกรายละเอียดสินค้า!" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="howtouse" label="วิธีการใช้งาน">
+
+          <Form.Item
+            name="howtouse"
+            label="วิธีการใช้งาน"
+            rules={[{ required: true, message: "กรุณากรอกวิธีการใช้งาน!" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="unitsnumber" label="จำนวนหน่วย">
+
+          <Form.Item
+            name="unitsnumber"
+            label="จำนวนหน่วย"
+            rules={[
+              { required: true, message: "กรุณากรอกจำนวนหน่วย!" },
+              {
+                type: "number",
+                min: 1,
+                message: "จำนวนหน่วยต้องเป็นตัวเลขและไม่น้อยกว่า 1!",
+              },
+            ]}
+          >
             <Input type="number" />
           </Form.Item>
-          <Form.Item name="units" label="หน่วยนับสินค้า ">
+
+          <Form.Item
+            name="units"
+            label="หน่วยนับสินค้า"
+            rules={[{ required: true, message: "กรุณากรอกหน่วยนับสินค้า!" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="price" label="ราคาต่อหน่วย">
+
+          <Form.Item
+            name="price"
+            label="ราคาต่อหน่วย"
+            rules={[
+              { required: true, message: "กรุณากรอกราคาต่อหน่วย!" },
+              {
+                type: "number",
+                min: 0,
+                message: "ราคาต่อหน่วยต้องเป็นตัวเลขที่มากกว่าหรือเท่ากับ 0!",
+              },
+            ]}
+          >
             <Input type="number" />
           </Form.Item>
         </Form>

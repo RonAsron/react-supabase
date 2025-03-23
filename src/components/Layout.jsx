@@ -12,7 +12,7 @@ const AppLayout = ({ children }) => {
     {
       key: '1',
       icon: <HomeOutlined />,
-      label: <Link to="/">ชื่อ</Link>,
+      label: <Link to="/">ชื่อ ผู้จัดทำ</Link>,
     },
     {
       key: '2',
@@ -24,7 +24,7 @@ const AppLayout = ({ children }) => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       {/* Sidebar */}
-      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
+      <Sider style={{ background: "" }} collapsible collapsed={collapsed} onCollapse={setCollapsed}>
         <div
           style={{
             height: 64,
@@ -36,15 +36,15 @@ const AppLayout = ({ children }) => {
             color: "#fff",
           }}
         >
-          LOGO
+          AKA RoN 
         </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} items={menuItems} />
       </Sider>
 
       <Layout>
         {/* Header */}
-        <Header style={{ padding: 0, background: "#efc5de", color: "#fff", textAlign: "center" }}>
-          <h1 style={{ margin: 30, fontSize: "20px" }}>สอบ อิอิ</h1>
+        <Header style={{ padding: 0, color: "#fff", textAlign: "center" }}>
+          <h1 style={{ margin: 30, fontSize: "20px" }}>... Test IT-PKVC 2025 ...</h1>
         </Header>
 
         {/* Content */}
